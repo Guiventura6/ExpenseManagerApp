@@ -106,7 +106,7 @@ public class DashBoardFragment extends Fragment {
         String uid=mUser.getUid();
 
         mIncomeDatabase=FirebaseDatabase.getInstance().getReference().child("IncomeData").child(uid);
-        mExpenseDatabase=FirebaseDatabase.getInstance().getReference().child("ExpenseDatabase").child(uid);
+        mExpenseDatabase=FirebaseDatabase.getInstance().getReference().child("ExpenseData").child(uid);
 
         //Connect floating button to layout
         fab_main_btn=myviem.findViewById(R.id.fb_main_plus_btn);
@@ -302,6 +302,9 @@ public class DashBoardFragment extends Fragment {
                     amount.setError("Required Field..");
                     return;
                 }
+
+                int inamount=Integer.parseInt(tmAmount);
+
                 if (TextUtils.isEmpty(tmType)){
                     type.setError("Required Field..");
                     return;
@@ -311,7 +314,15 @@ public class DashBoardFragment extends Fragment {
                     return;
                 }
 
+                String id=mExpenseDatabase.push().getKey();
+                String mDate=DateFormat.getInstance().format(new Date());
+
+                Data data=new Data(inamount, tmType, tmNote, id, mDate);
+                mExpenseDatabase.child(id).setValue(data);
+                Toast.makeText(getActivity(), "Dados Adicionados", Toast.LENGTH_SHORT).show();
+
                 ftAnimation();
+                dialog.dismiss();
 
             }
         });
