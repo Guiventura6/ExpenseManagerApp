@@ -52,8 +52,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textAppearance="?android:textAppearanceLarge"
-                        android:textColor="@android:color/holo_red_dark"
-                        android:text="Despesas"
+                        android:textColor="@color/expense_color"
+                        android:text="Investimentos"
                         />
 
                 </RelativeLayout>
@@ -94,7 +94,7 @@
                         android:layout_height="wrap_content"
                         android:id="@+id/expense_set_result"
                         android:textAppearance="?android:textAppearanceLarge"
-                        android:textColor="@android:color/holo_red_dark"
+                        android:textColor="@color/expense_color"
                         android:text="000.00"
                         />
 
@@ -120,7 +120,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Despesas"
+                android:text="Investimento"
                 android:id="@+id/expense_ft_text"
                 android:padding="5dp"
                 android:textColor="@android:color/white"

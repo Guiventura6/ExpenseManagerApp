@@ -38,7 +38,7 @@ public class IncomeFragment extends Fragment {
     private RecyclerView recyclerView;
     private FirebaseRecyclerAdapter adapter;
 
-    //Text view
+    //Text view..
     private TextView incomeTotalSum;
 
 
@@ -108,7 +108,6 @@ public class IncomeFragment extends Fragment {
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(layoutManager);
 
-        // MIN 12:00
         mIncomeDatabase.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -132,8 +131,6 @@ public class IncomeFragment extends Fragment {
 
             }
         });
-
-
 
         return myview;
     }
@@ -163,9 +160,8 @@ public class IncomeFragment extends Fragment {
         adapter.startListening();
 
     }
-}
 
-    class MyViewHolder extends RecyclerView.ViewHolder{
+    private static class MyViewHolder extends RecyclerView.ViewHolder{
 
         View mView;
 
@@ -196,4 +192,7 @@ public class IncomeFragment extends Fragment {
         }
 
     }
+}
+
+
 

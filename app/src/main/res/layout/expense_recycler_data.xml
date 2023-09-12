@@ -5,12 +5,15 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     app:cardElevation="5dp"
     android:elevation="5dp"
+    android:layout_margin="5dp"
+    android:background="#FFF1F3FC"
     android:layout_height="wrap_content">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:orientation="horizontal"
-        android:layout_margin="5dp"
+        android:padding="5dp"
+        android:background="#FFF1F3FC"
         android:layout_height="wrap_content">
 
         <RelativeLayout
@@ -53,7 +56,7 @@
                 android:textStyle="bold"
                 android:textColor="@android:color/black"
                 android:layout_below="@+id/type_txt_expense"
-                android:id="@+id/note_txt_income"
+                android:id="@+id/note_txt_expense"
                 />
 
         </RelativeLayout>
