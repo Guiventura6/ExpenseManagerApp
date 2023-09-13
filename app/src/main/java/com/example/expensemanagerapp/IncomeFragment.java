@@ -48,7 +48,6 @@ public class IncomeFragment extends Fragment {
     private TextView incomeTotalSum;
 
     //Update editText
-
     private EditText edtAmount;
     private EditText edtType;
     private EditText edtNote;
@@ -57,7 +56,7 @@ public class IncomeFragment extends Fragment {
     private Button btnUpdate;
     private Button btnDelete;
 
-    // Daaa item
+    // Data item
     private String type;
     private String note;
     private int amount;
@@ -106,7 +105,6 @@ public class IncomeFragment extends Fragment {
          //mParam2 = getArguments().getString(ARG_PARAM2);
          }*/
     }
-
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -243,6 +241,9 @@ public class IncomeFragment extends Fragment {
         edtType=myview.findViewById(R.id.type_edt);
         edtNote=myview.findViewById(R.id.note_edt);
 
+        btnUpdate=myview.findViewById(R.id.btn_update);
+        btnDelete=myview.findViewById(R.id.btn_delete);
+
         //Set data to edit text..
         edtType.setText(type);
         edtType.setSelection(type.length());
@@ -252,9 +253,6 @@ public class IncomeFragment extends Fragment {
 
         edtAmount.setText(String.valueOf(amount));
         edtAmount.setSelection(String.valueOf(amount).length());
-
-        btnUpdate=myview.findViewById(R.id.btn_update);
-        btnDelete=myview.findViewById(R.id.btn_delete);
 
         final AlertDialog dialog=mydialog.create();
 

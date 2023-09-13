@@ -3,6 +3,7 @@ package com.example.expensemanagerapp;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -10,6 +11,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 
 import com.example.expensemanagerapp.Model.Data;
@@ -40,6 +43,24 @@ public class ExpenseFragment extends Fragment {
 
     //Text view..
     private TextView expenseTotalSum;
+
+    //Update editText
+    private EditText edtAmount;
+    private EditText edtType;
+    private EditText edtNote;
+
+    //button for update and delete
+    private Button btnUpdate;
+    private Button btnDelete;
+
+    // Data item
+    private String type;
+    private String note;
+    private int amount;
+
+    private String post_key;
+
+
 
     /**
      // TODO: Rename parameter arguments, choose names that match
@@ -150,6 +171,13 @@ public class ExpenseFragment extends Fragment {
                 holder.setType(model.getType());
                 holder.setNote(model.getNote());
                 holder.setDate(model.getDate());
+
+                holder.mView.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        updateDataItem();
+                    }
+                });
             }
         };
         recyclerView.setAdapter(adapter);
@@ -186,6 +214,51 @@ public class ExpenseFragment extends Fragment {
             String stamount=String.valueOf(amount);
             mAmount.setText(stamount);
         }
+
+    }
+
+    private void updateDataItem(){
+
+        AlertDialog.Builder mydialog=new AlertDialog.Builder(getActivity());
+        LayoutInflater inflater=LayoutInflater.from(getActivity());
+        View myview=inflater.inflate(R.layout.update_data_item, null);
+        mydialog.setView(myview);
+
+        edtAmount=myview.findViewById(R.id.amount_edt);
+        edtType=myview.findViewById(R.id.type_edt);
+        edtNote=myview.findViewById(R.id.note_edt);
+
+        btnUpdate=myview.findViewById(R.id.btn_update);
+        btnDelete=myview.findViewById(R.id.btn_delete);
+
+        final AlertDialog dialog=mydialog.create();
+
+        btnUpdate.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
+
+        btnDelete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.dismiss();
+            }
+        });
+
+        //Set data to edit text..
+       /** edtType.setText(type);
+        edtType.setSelection(type.length());
+
+        edtNote.setText(note);
+        edtNote.setSelection(note.length());
+
+        edtAmount.setText(String.valueOf(amount));
+        edtAmount.setSelection(String.valueOf(amount).length());*/
+
+
+        dialog.show();
 
     }
 }
