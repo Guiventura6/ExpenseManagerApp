@@ -25,6 +25,9 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.text.DateFormat;
+import java.util.Date;
+
 
 /**
  * A simple {@link Fragment} subclass.
@@ -250,8 +253,6 @@ public class IncomeFragment extends Fragment {
         edtAmount.setText(String.valueOf(amount));
         edtAmount.setSelection(String.valueOf(amount).length());
 
-
-
         btnUpdate=myview.findViewById(R.id.btn_update);
         btnDelete=myview.findViewById(R.id.btn_delete);
 
@@ -260,6 +261,20 @@ public class IncomeFragment extends Fragment {
         btnUpdate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                type=edtType.getText().toString().trim();
+                note=edtNote.getText().toString().trim();
+
+                String mdamount=String.valueOf(amount);
+                mdamount=edtAmount.getText().toString().trim();
+
+                int myAmount=Integer.parseInt(mdamount);
+
+                String mDate= DateFormat.getDateInstance().format(new Date());
+
+                Data data=new Data(myAmount, type, note, post_key, mDate);
+                mIncomeDatabase.child(post_key).setValue(data);
+
+                dialog.dismiss();
 
             }
         });
@@ -267,6 +282,7 @@ public class IncomeFragment extends Fragment {
         btnDelete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                mIncomeDatabase.child(post_key).removeValue();
                 dialog.dismiss();
             }
         });
