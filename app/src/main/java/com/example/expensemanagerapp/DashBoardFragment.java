@@ -187,6 +187,28 @@ public class DashBoardFragment extends Fragment {
             }
         });
 
+        //Calculate total expense..
+        mExpenseDatabase.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                int totalSum=0;
+
+                for (DataSnapshot mysnap:snapshot.getChildren()){
+                    Data data=mysnap.getValue(Data.class);
+
+                    totalSum+=data.getAmount();
+
+                    String stResult=String.valueOf(totalSum);
+                    totalExpenseResult.setText(stResult);
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
         return myviem;
     }
 
