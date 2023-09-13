@@ -258,17 +258,18 @@ public class ExpenseFragment extends Fragment {
         btnUpdate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                //Data to Server
                 type=edtType.getText().toString().trim();
                 note=edtNote.getText().toString().trim();
 
-                String mdamount=String.valueOf(amount);
-                mdamount=edtAmount.getText().toString().trim();
+                String stamount=String.valueOf(amount);
+                stamount=edtAmount.getText().toString().trim();
 
-                int myAmount=Integer.parseInt(mdamount);
+                int intAmount=Integer.parseInt(stamount);
 
                 String mDate= DateFormat.getDateInstance().format(new Date());
 
-                Data data=new Data(myAmount, type, note, post_key, mDate);
+                Data data=new Data(intAmount, type, note, post_key, mDate);
                 mExpenseDatabase.child(post_key).setValue(data);
 
                 dialog.dismiss();
