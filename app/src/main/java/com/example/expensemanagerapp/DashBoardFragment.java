@@ -5,6 +5,8 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.text.TextUtils;
 import android.view.LayoutInflater;
@@ -60,6 +62,10 @@ public class DashBoardFragment extends Fragment {
     private FirebaseAuth mAuth;
     private DatabaseReference mIncomeDatabase;
     private DatabaseReference mExpenseDatabase;
+
+    //Recycler view
+    private RecyclerView mRecyclerIncome;
+    private RecyclerView mRecyclerExpense;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -125,6 +131,11 @@ public class DashBoardFragment extends Fragment {
         //Total income and expense result set..
         totalIncomeResult=myviem.findViewById(R.id.income_set_result);
         totalExpenseResult=myviem.findViewById(R.id.expense_set_result);
+
+        //Recycler
+        mRecyclerIncome=myviem.findViewById(R.id.recycler_income);
+        mRecyclerExpense=myviem.findViewById(R.id.recycler_expense);
+
 
 
         //Animation connect...
@@ -208,6 +219,20 @@ public class DashBoardFragment extends Fragment {
 
             }
         });
+
+        //Recycler
+        LinearLayoutManager layoutManagerIncome=new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false);
+
+        layoutManagerIncome.setStackFromEnd(true);
+        layoutManagerIncome.setReverseLayout(true);
+        mRecyclerIncome.setHasFixedSize(true);
+        mRecyclerIncome.setLayoutManager(layoutManagerIncome);
+
+        LinearLayoutManager layoutManagerExpense=new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false);
+        layoutManagerExpense.setStackFromEnd(true);
+        layoutManagerExpense.setReverseLayout(true);
+        mRecyclerExpense.setHasFixedSize(true);
+        mRecyclerExpense.setLayoutManager(layoutManagerExpense);
 
         return myviem;
     }
