@@ -284,9 +284,6 @@ public class ExpenseFragment extends Fragment {
             }
         });
 
-
-
-
         dialog.show();
 
     }

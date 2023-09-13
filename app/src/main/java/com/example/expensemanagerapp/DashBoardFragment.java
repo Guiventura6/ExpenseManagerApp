@@ -2,6 +2,7 @@ package com.example.expensemanagerapp;
 
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
 
@@ -20,8 +21,11 @@ import com.example.expensemanagerapp.Model.Data;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.text.DateFormat;
 import java.util.Date;
@@ -48,6 +52,9 @@ public class DashBoardFragment extends Fragment {
     //Animation.
     private Animation FadeOpen, FadeClose;
 
+    //DashBoard income and expense result..
+    private TextView totalIncomeResult;
+    private TextView totalExpenseResult;
 
     //Firebase...
     private FirebaseAuth mAuth;
@@ -115,6 +122,10 @@ public class DashBoardFragment extends Fragment {
         fab_income_txt=myviem.findViewById(R.id.income_ft_text);
         fab_expense_txt=myviem.findViewById(R.id.expense_ft_text);
 
+        //Total income and expense result set..
+        totalIncomeResult=myviem.findViewById(R.id.income_set_result);
+        totalExpenseResult=myviem.findViewById(R.id.expense_set_result);
+
 
         //Animation connect...
         FadeOpen= AnimationUtils.loadAnimation(getActivity(), R.anim.fade_open);
@@ -154,6 +165,27 @@ public class DashBoardFragment extends Fragment {
             }
         });
 
+        //Calculate total income..
+        mIncomeDatabase.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                int totalSum=0;
+
+                for (DataSnapshot mysnap:snapshot.getChildren()){
+                    Data data=mysnap.getValue(Data.class);
+
+                    totalSum+=data.getAmount();
+
+                    String stResult=String.valueOf(totalSum);
+                    totalIncomeResult.setText(stResult);
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
 
         return myviem;
     }
