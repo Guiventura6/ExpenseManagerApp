@@ -26,6 +26,9 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.text.DateFormat;
+import java.util.Date;
+
 /**
  * A simple {@link Fragment} subclass.
  * Use the {@link ExpenseFragment #newInstance} factory method to
@@ -175,6 +178,13 @@ public class ExpenseFragment extends Fragment {
                 holder.mView.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
+                        int pos=holder.getBindingAdapterPosition();
+                        post_key=getRef(pos).getKey();
+
+                        type=model.getType();
+                        note=model.getNote();
+                        amount=model.getAmount();
+
                         updateDataItem();
                     }
                 });
@@ -233,29 +243,47 @@ public class ExpenseFragment extends Fragment {
 
         final AlertDialog dialog=mydialog.create();
 
-        btnUpdate.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-            }
-        });
-
-        btnDelete.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                dialog.dismiss();
-            }
-        });
-
         //Set data to edit text..
-       /** edtType.setText(type);
+        edtType.setText(type);
         edtType.setSelection(type.length());
 
         edtNote.setText(note);
         edtNote.setSelection(note.length());
 
         edtAmount.setText(String.valueOf(amount));
-        edtAmount.setSelection(String.valueOf(amount).length());*/
+        edtAmount.setSelection(String.valueOf(amount).length());
+
+
+
+        btnUpdate.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                type=edtType.getText().toString().trim();
+                note=edtNote.getText().toString().trim();
+
+                String mdamount=String.valueOf(amount);
+                mdamount=edtAmount.getText().toString().trim();
+
+                int myAmount=Integer.parseInt(mdamount);
+
+                String mDate= DateFormat.getDateInstance().format(new Date());
+
+                Data data=new Data(myAmount, type, note, post_key, mDate);
+                mExpenseDatabase.child(post_key).setValue(data);
+
+                dialog.dismiss();
+            }
+        });
+
+        btnDelete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mExpenseDatabase.child(post_key).removeValue();
+                dialog.dismiss();
+            }
+        });
+
+
 
 
         dialog.show();
