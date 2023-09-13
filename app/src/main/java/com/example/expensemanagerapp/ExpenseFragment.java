@@ -142,7 +142,7 @@ public class ExpenseFragment extends Fragment {
 
                     String stTotavalue=String.valueOf(totalvalue);
 
-                    expenseTotalSum.setText(stTotavalue);
+                    expenseTotalSum.setText(stTotavalue+",00");
                 }
 
             }
