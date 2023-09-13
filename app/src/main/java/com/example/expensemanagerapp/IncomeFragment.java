@@ -54,6 +54,14 @@ public class IncomeFragment extends Fragment {
     private Button btnUpdate;
     private Button btnDelete;
 
+    // Daaa item
+    private String type;
+    private String note;
+    private int amount;
+
+    private String post_key;
+
+
     /**   // TODO: Rename parameter arguments, choose names that match
      // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
      private static final String ARG_PARAM1 = "param1";
@@ -170,6 +178,14 @@ public class IncomeFragment extends Fragment {
                 holder.mView.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
+
+                        int pos=holder.getBindingAdapterPosition();
+                        post_key=getRef(pos).getKey();
+
+                        type=model.getType();
+                        note=model.getNote();
+                        amount=model.getAmount();
+
                         updateDataItem();
                     }
                 });
@@ -224,10 +240,22 @@ public class IncomeFragment extends Fragment {
         edtType=myview.findViewById(R.id.type_edt);
         edtNote=myview.findViewById(R.id.note_edt);
 
+        //Set data to edit text..
+        edtType.setText(type);
+        edtType.setSelection(type.length());
+
+        edtNote.setText(note);
+        edtNote.setSelection(note.length());
+
+        edtAmount.setText(String.valueOf(amount));
+        edtAmount.setSelection(String.valueOf(amount).length());
+
+
+
         btnUpdate=myview.findViewById(R.id.btn_update);
         btnDelete=myview.findViewById(R.id.btn_delete);
 
-        AlertDialog dialog=mydialog.create();
+        final AlertDialog dialog=mydialog.create();
 
         btnUpdate.setOnClickListener(new View.OnClickListener() {
             @Override
