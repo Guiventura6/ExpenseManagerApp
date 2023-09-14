@@ -18,7 +18,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Type:"
+            android:text="Tipo:"
             android:gravity="center"
             android:textColor="@color/nav_header"
             android:id="@+id/type_income_ds"
@@ -30,7 +30,7 @@
             android:layout_height="wrap_content"
             android:gravity="center"
             android:padding="5dp"
-            android:text="Amount:"
+            android:text="Valor:"
             android:textColor="@color/income_color"
             android:textAppearance="?android:textAppearanceMedium"
             android:id="@+id/amount_income_ds"

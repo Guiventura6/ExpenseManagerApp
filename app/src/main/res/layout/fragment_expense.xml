@@ -32,7 +32,7 @@
                     android:layout_height="wrap_content"
                     android:textAppearance="?android:textAppearanceMedium"
                     android:textColor="@android:color/black"
-                    android:text="Investimentos"
+                    android:text="Despesas"
                     />
 
             </RelativeLayout>

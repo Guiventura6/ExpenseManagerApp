@@ -2,7 +2,7 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item android:id="@+id/dashboard"
-        android:title="Dashboard"
+        android:title="Principal"
         android:icon="@drawable/dashboard"/>
 
     <item android:id="@+id/income"
@@ -10,7 +10,7 @@
         android:icon="@drawable/income"/>
 
     <item android:id="@+id/expense"
-        android:title="Investimentos"
+        android:title="Despesas"
         android:icon="@drawable/expense"/>
 
 </menu>

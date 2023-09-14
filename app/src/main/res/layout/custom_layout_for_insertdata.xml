@@ -28,7 +28,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="AMOUNT:"/>
+                        android:text="VALOR:"/>
 
                 </RelativeLayout>
 
@@ -41,6 +41,7 @@
                     <EditText
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:inputType="numberDecimal"
                         android:id="@+id/amount_edt"
                         />
 
@@ -63,7 +64,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="TYPE:"/>
+                        android:text="TIPO:"/>
 
                 </RelativeLayout>
 
@@ -98,7 +99,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="NOTE:"/>
+                        android:text="NOTA:"/>
 
                 </RelativeLayout>
 
@@ -133,7 +134,7 @@
 
                     <Button
                         android:layout_width="match_parent"
-                        android:text="CANCEL"
+                        android:text="CANCELAR"
                         android:textAppearance="?android:textAppearanceMedium"
                         android:textColor="@android:color/white"
                         android:background="@color/nav_header"
@@ -151,7 +152,7 @@
 
                     <Button
                         android:layout_width="match_parent"
-                        android:text="SAVE"
+                        android:text="SALVAR"
                         android:textAppearance="?android:textAppearanceMedium"
                         android:textColor="@android:color/white"
                         android:background="@color/nav_header"

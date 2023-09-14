@@ -33,6 +33,7 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
                 android:hint="Email:"
+                android:inputType="textEmailAddress"
                 android:textColor="@android:color/white"
                 android:textColorHint="@android:color/white"
                 android:background="@drawable/edittext_background"
@@ -44,7 +45,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
-                android:hint="Password:"
+                android:hint="Senha:"
+                android:inputType="textPassword"
                 android:textColor="@android:color/white"
                 android:textColorHint="@android:color/white"
                 android:background="@drawable/edittext_background"
@@ -56,7 +58,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
-                android:text="Login"
+                android:text="Entrar"
                 android:background="@drawable/edittext_background"
                 android:textColor="@android:color/white"
                 android:id="@+id/btn_login"
@@ -69,7 +71,7 @@
                 android:gravity="center"
                 android:textColor="@android:color/white"
                 android:id="@+id/forget_password"
-                android:text="Forget Password?"
+                android:text="Esqueceu a senha?"
                 android:padding="5dp"
                 />
 
@@ -79,7 +81,7 @@
                 android:gravity="center"
                 android:textColor="@android:color/white"
                 android:id="@+id/signup_reg"
-                android:text="Don't have account? Sign up here."
+                android:text="Não possui conta? Registrar"
                 android:padding="5dp"
                 />
 
