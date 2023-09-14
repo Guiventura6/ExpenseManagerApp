@@ -20,7 +20,10 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.expensemanagerapp.Model.Data;
+import com.firebase.ui.database.FirebaseRecyclerAdapter;
+import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.firebase.FirebaseOptions;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -66,6 +69,7 @@ public class DashBoardFragment extends Fragment {
     //Recycler view
     private RecyclerView mRecyclerIncome;
     private RecyclerView mRecyclerExpense;
+    private FirebaseRecyclerAdapter adapter;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -417,4 +421,59 @@ public class DashBoardFragment extends Fragment {
 
     }
 
+    public void onStart() {
+        super.onStart();
+
+        FirebaseRecyclerOptions<Data> options = new FirebaseRecyclerOptions.Builder<Data>()
+                .setQuery(mIncomeDatabase, Data.class)
+                .build();
+
+        adapter = new FirebaseRecyclerAdapter<Data, DashBoardFragment.IncomeViewHolder>(options) {
+
+            @NonNull
+            @Override
+            public IncomeViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+                return new IncomeViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.dashboard_income, parent, false));
+            }
+
+            @Override
+            protected void onBindViewHolder(@NonNull IncomeViewHolder holder, int position, @NonNull Data model) {
+                holder.setIncomeType(model.getType());
+                holder.setIncomeAmount(model.getAmount());
+                holder.setIncomeDate(model.getDate());
+            }
+
+
+
+        };
+        mRecyclerIncome.setAdapter(adapter);
+        adapter.startListening();
+    }
+
+    //For Income Data
+    private static class IncomeViewHolder extends RecyclerView.ViewHolder{
+
+        View mIncomeView;
+
+        public IncomeViewHolder(@NonNull View itemView) {
+            super(itemView);
+            mIncomeView=itemView;
+        }
+
+        public void setIncomeType(String type){
+            TextView mType=mIncomeView.findViewById(R.id.type_income_ds);
+            mType.setText(type);
+        }
+
+        public void setIncomeAmount(int amount){
+            TextView mAmount=mIncomeView.findViewById(R.id.amount_income_ds);
+            String strAmount = String.valueOf(amount);
+            mAmount.setText(strAmount);
+        }
+
+        public void setIncomeDate(String date){
+            TextView mDate=mIncomeView.findViewById(R.id.date_income_ds);
+            mDate.setText(date);
+        }
+    }
 }
