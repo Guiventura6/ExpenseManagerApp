@@ -12,6 +12,11 @@
     <item android:id="@+id/expense"
         android:title="Despesas"
         android:icon="@drawable/expense"/>
+
+    <item android:id="@+id/target"
+        android:title="Objetivos"
+        android:icon="@drawable/target"/>
+
     <item android:id="@+id/logout"
         android:title="Encerrar sessão"
         android:icon="@drawable/encerrar_sessao"/>
