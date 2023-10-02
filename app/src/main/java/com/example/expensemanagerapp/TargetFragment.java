@@ -5,6 +5,7 @@ import android.os.Bundle;
 import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
 
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -62,7 +63,32 @@ public class TargetFragment extends Fragment {
         btnSave.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // HERE
+
+                String target=edtTarget.getText().toString().trim();
+                String date=edtDate.getText().toString().trim();
+                String amount=edtAmount.getText().toString().trim();
+
+                if (TextUtils.isEmpty(target)){
+                    edtTarget.setError("Required Field..");
+                    return;
+                }
+
+                if (TextUtils.isEmpty(date)){
+                    edtDate.setError("Required Field..");
+                    return;
+                }
+
+                if (TextUtils.isEmpty(amount)){
+                    edtAmount.setError("Required Field..");
+                    return;
+                }
+
+                int amountInt=Integer.parseInt(amount);
+
+
+
+
+
             }
         });
 
