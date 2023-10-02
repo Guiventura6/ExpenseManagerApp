@@ -60,7 +60,7 @@
                 android:textStyle="bold"
                 android:textColor="@android:color/black"
                 android:layout_below="@+id/title_txt_target"
-                android:id="@+id/date_txt_expense"
+                android:id="@+id/date_txt_target"
                 />
 
         </RelativeLayout>
