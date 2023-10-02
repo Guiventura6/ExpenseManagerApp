@@ -3,7 +3,6 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:orientation="vertical"
-    android:background="#FFF1F3FC"
     android:layout_height="match_parent">
 
     <ScrollView
@@ -42,7 +41,7 @@
                     <EditText
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:id="@+id/type_edt"
+                        android:id="@+id/target_edt"
                         />
 
 
@@ -77,7 +76,7 @@
                     <EditText
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:id="@+id/note_edt"
+                        android:id="@+id/date_edt"
                         />
 
 
