@@ -142,8 +142,6 @@ public class DashBoardFragment extends Fragment {
         mRecyclerIncome=myviem.findViewById(R.id.recycler_income);
         mRecyclerExpense=myviem.findViewById(R.id.recycler_expense);
 
-
-
         //Animation connect...
         FadeOpen= AnimationUtils.loadAnimation(getActivity(), R.anim.fade_open);
         FadeClose=AnimationUtils.loadAnimation(getActivity(), R.anim.fade_close);

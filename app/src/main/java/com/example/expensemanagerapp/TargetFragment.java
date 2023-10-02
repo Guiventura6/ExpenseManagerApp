@@ -11,10 +11,23 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
+import com.example.expensemanagerapp.Model.Data;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
+import java.text.DateFormat;
+import java.util.Date;
 
 public class TargetFragment extends Fragment {
+
+    // Firebase Database
+    private FirebaseAuth mAuth;
+    private DatabaseReference mTargetDatabase;
 
     private FloatingActionButton fab_target_btn;
 
@@ -26,8 +39,14 @@ public class TargetFragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
         View myview=inflater.inflate(R.layout.fragment_target, container, false);
+
+        // Conecting Firebase
+        mAuth=FirebaseAuth.getInstance();
+        FirebaseUser mUser= mAuth.getCurrentUser();
+        String uid=mUser.getUid();
+
+        mTargetDatabase= FirebaseDatabase.getInstance().getReference().child("TargetData").child(uid);
 
         //Connect floating button to layout
         fab_target_btn=myview.findViewById(R.id.fb_target_plus_btn);
@@ -85,9 +104,13 @@ public class TargetFragment extends Fragment {
 
                 int amountInt=Integer.parseInt(amount);
 
+                String id= mTargetDatabase.push().getKey();
+                String mDate= DateFormat.getDateInstance().format(new Date());
+                Data data=new Data(amountInt,date,target,id,mDate);
+                mTargetDatabase.child(id).setValue(data);
 
-
-
+                Toast.makeText(getActivity(), "Dados adicionados", Toast.LENGTH_SHORT).show();
+                dialog.dismiss();
 
             }
         });
