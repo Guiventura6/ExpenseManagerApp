@@ -65,6 +65,7 @@ public class DashBoardFragment extends Fragment {
     private DatabaseReference mIncomeDatabase;
     private DatabaseReference mExpenseDatabase;
 
+
     //Recycler view
     private RecyclerView mRecyclerIncome;
     private RecyclerView mRecyclerExpense;

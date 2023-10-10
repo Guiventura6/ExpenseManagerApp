@@ -65,7 +65,6 @@ public class TargetFragment extends Fragment {
         String uid=mUser.getUid();
 
         mTargetDatabase= FirebaseDatabase.getInstance().getReference().child("TargetData").child(uid);
-        mTargetDatabase.keepSynced(true);
 
         //Connect floating button to layout
         fab_target_btn=myview.findViewById(R.id.fb_target_plus_btn);
@@ -161,16 +160,13 @@ public class TargetFragment extends Fragment {
                 .setQuery(mTargetDatabase, Data.class)
                 .build();
 
-        adapter = new FirebaseRecyclerAdapter<Data, TargetFragment.MyViewHolder>(options){
+        adapter = new FirebaseRecyclerAdapter<Data, MyViewHolder>(options){
 
-            @NonNull
-            @Override
-            public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-                return new TargetFragment.MyViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.target_recycler_data, parent, false));
+            public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+                return new MyViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.target_recycler_data, parent, false));
             }
 
-            @Override
-            protected void onBindViewHolder(@NonNull MyViewHolder holder, int position, @NonNull Data model) {
+            protected void onBindViewHolder(MyViewHolder holder, int position, @NonNull Data model) {
                 // Criar um novo modelo de dados para dados de objetivos.
                 holder.setAmount(model.getAmount());
                 holder.setTarget(model.getType());
